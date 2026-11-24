@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SCCM Health Check - ConfigMgr Daily Servers Health Check - 2026-11-24</title>
+<style>
+body { margin:0; background:#F2F2F2; color:#000000; font-family:'Segoe UI', Arial, Helvetica, sans-serif; font-size:13px; line-height:1.4; }
+.wrap { width:100%; max-width:1180px; margin:0 auto; background:#FFFFFF; }
+.hdr { background:#000000; border-top:6px solid #A100FF; padding:22px 28px 18px 28px; }
+.hdr h1 { margin:0; font-size:22px; font-weight:600; color:#FFFFFF; }
+.hdr .sub { margin-top:4px; font-size:12px; color:#D2A5FF; }
+.banner { padding:11px 28px; font-size:14px; font-weight:600; color:#FFFFFF; }
+.banner.critical { background:#C62828; }
+.banner.warning { background:#FFB000; color:#000000; }
+.banner.ok { background:#2E7D32; }
+table.kpis { width:100%; border-collapse:collapse; }
+table.kpis td { width:25%; text-align:center; padding:14px 6px; background:#F5EBFF; border-right:2px solid #FFFFFF; }
+table.kpis td b { display:block; font-size:28px; color:#460073; }
+table.kpis td span { font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#66646E; }
+.pad { padding:6px 28px 18px 28px; }
+.sec-title { background:#7500C0; color:#FFFFFF; font-size:14px; font-weight:600; padding:9px 12px; margin-top:22px; }
+.note { font-size:11px; color:#66646E; padding:5px 2px 6px 2px; }
+table.grid { width:100%; border-collapse:collapse; }
+table.grid th { background:#F2F2F2; color:#000000; font-size:12px; text-align:center; padding:7px 8px; border-bottom:2px solid #A100FF; }
+table.grid td { padding:6px 8px; text-align:center; border-bottom:1px solid #E3E3E3; }
+table.grid td.l { text-align:left; }
+table.grid td.n, table.grid th.n { width:34px; color:#66646E; }
+table.grid tr.alt td { background:#FAF5FF; }
+table.grid td.st { font-weight:600; color:#FFFFFF; width:84px; }
+table.grid td.st.ok { background:#2E7D32; }
+table.grid td.st.warning { background:#FFB000; color:#000000; }
+table.grid td.st.critical { background:#C62828; }
+table.grid td.st.na { background:#66646E; }
+td.clear { text-align:left; padding:10px 12px; color:#2E7D32; font-weight:600; border-bottom:1px solid #E3E3E3; }
+.more { font-size:11px; color:#66646E; padding:6px 2px; }
+table.glance td.l a { color:#7500C0; text-decoration:none; font-weight:600; }
+.foot { background:#000000; color:#D2A5FF; text-align:center; font-size:11px; padding:14px 28px; border-bottom:6px solid #A100FF; }
+.legend span { display:inline-block; padding:3px 10px; margin-right:6px; font-size:11px; font-weight:600; color:#FFFFFF; }
+.legend .ok { background:#2E7D32; } .legend .warning { background:#FFB000; color:#000000; } .legend .critical { background:#C62828; } .legend .na { background:#66646E; }
+.preview-strip { background:#F5EBFF; color:#460073; text-align:center; font-size:12px; padding:6px; border-bottom:1px solid #D2A5FF; }
+</style>
+</head>
+<body>
+<div class="preview-strip">PREVIEW with sample data (not real servers' current state). This strip is not part of the report.</div>
+<div class="wrap">
+<div class="hdr"><h1>SCCM Health Check - ConfigMgr Daily Servers Health Check - 2026-11-24</h1><div class="sub">Site PAN  |  Provider SRVSCCM  |  Site DB SRVSCCMDB  |  Central DB SRVSCCMDB\CM_PAN  |  Tuesday, November 24, 2026 10:52:00 AM</div></div>
+<div class="banner critical">ATTENTION: 4 critical and 11 warning item(s) need review.</div>
+<table class="kpis"><tr>
+<td><b>4</b><span>Critical</span></td>
+<td><b>11</b><span>Warning</span></td>
+<td><b>50</b><span>Ok</span></td>
+<td><b>3</b><span>Info / NA</span></td>
+</tr></table>
+<div class="pad">
+<div class='sec-title'>At a glance</div><table class='grid glance'><thead><tr><th class='n'>#</th><th>Check</th><th>Critical</th><th>Warning</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'><a href='#sec-availability'>Servers Availability</a></td><td>0</td><td>0</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>2</td><td class='l'><a href='#sec-resources'>CPU &amp; Memory</a></td><td>0</td><td>1</td><td class='st warning'>Warning</td></tr>
+<tr><td class='n'>3</td><td class='l'><a href='#sec-disk'>Servers Disk Space</a></td><td>0</td><td>1</td><td class='st warning'>Warning</td></tr>
+<tr class='alt'><td class='n'>4</td><td class='l'><a href='#sec-mp'>Management Points</a></td><td>0</td><td>0</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>5</td><td class='l'><a href='#sec-services'>ConfigMgr Services</a></td><td>1</td><td>0</td><td class='st critical'>Critical</td></tr>
+<tr class='alt'><td class='n'>6</td><td class='l'><a href='#sec-sqlservices'>SQL Server Services</a></td><td>0</td><td>0</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>7</td><td class='l'><a href='#sec-backups'>Backups</a></td><td>0</td><td>0</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>8</td><td class='l'><a href='#sec-inboxes'>Inboxes Backlog</a></td><td>0</td><td>1</td><td class='st warning'>Warning</td></tr>
+<tr><td class='n'>9</td><td class='l'><a href='#sec-sites'>Site Status (issues only)</a></td><td>0</td><td>0</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>10</td><td class='l'><a href='#sec-components'>Component Status (Warning / Critical)</a></td><td>1</td><td>1</td><td class='st critical'>Critical</td></tr>
+<tr><td class='n'>11</td><td class='l'><a href='#sec-clients'>Client Health</a></td><td>0</td><td>1</td><td class='st warning'>Warning</td></tr>
+<tr class='alt'><td class='n'>12</td><td class='l'><a href='#sec-sup'>Software Update Point Synchronization</a></td><td>0</td><td>0</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>13</td><td class='l'><a href='#sec-compliance'>Patch Compliance (Software Update deployments)</a></td><td>1</td><td>1</td><td class='st critical'>Critical</td></tr>
+<tr class='alt'><td class='n'>14</td><td class='l'><a href='#sec-dpstorage'>Distribution Point Storage</a></td><td>0</td><td>1</td><td class='st warning'>Warning</td></tr>
+<tr><td class='n'>15</td><td class='l'><a href='#sec-contentdp'>Content Distribution by Distribution Point</a></td><td>0</td><td>1</td><td class='st warning'>Warning</td></tr>
+<tr class='alt'><td class='n'>16</td><td class='l'><a href='#sec-content'>Content Distribution Detail (not complete)</a></td><td>0</td><td>2</td><td class='st warning'>Warning</td></tr>
+<tr><td class='n'>17</td><td class='l'><a href='#sec-certs'>Certificate Expiration (LocalMachine\My, with private key)</a></td><td>1</td><td>1</td><td class='st critical'>Critical</td></tr>
+</tbody></table>
+<a id='sec-availability'></a><div class='sec-title'>Servers Availability</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>ServerName</th><th>IP Address</th><th>Operating System</th><th>Domain</th><th>Uptime</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>SRVSCCM</td><td>172.32.6.11</td><td>Microsoft Windows Server 2012 R2 Standard</td><td>bauducco.com.br</td><td>41d 6h</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>2</td><td class='l'>SRVSCCMDB</td><td>172.32.4.8</td><td>Microsoft Windows Server 2012 R2 Standard</td><td>bauducco.com.br</td><td>41d 6h</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>3</td><td class='l'>SRVWSUS</td><td>172.17.129.97</td><td>Microsoft Windows Server 2012 R2 Datacenter</td><td>bauducco.com.br</td><td>12d 3h</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>4</td><td class='l'>SRVR0000000265</td><td>172.17.129.114</td><td>Microsoft Windows Server 2012 R2 Datacenter</td><td>bauducco.com.br</td><td>12d 3h</td><td class='st ok'>Ok</td></tr>
+</tbody></table>
+<a id='sec-resources'></a><div class='sec-title'>CPU &amp; Memory</div>
+<div class='note'>CPU is a snapshot taken during the run. Warning from 80 % CPU or 85 % RAM; Critical from 90 % or 95 %.</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>ServerName</th><th>CPU now</th><th>RAM Total (GB)</th><th>RAM Used</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>SRVSCCM</td><td>34 %</td><td>16</td><td>71 %</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>2</td><td class='l'>SRVSCCMDB</td><td>52 %</td><td>32</td><td>88 %</td><td class='st warning'>Warning</td></tr>
+<tr><td class='n'>3</td><td class='l'>SRVWSUS</td><td>12 %</td><td>8</td><td>45 %</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>4</td><td class='l'>SRVR0000000265</td><td>8 %</td><td>8</td><td>40 %</td><td class='st ok'>Ok</td></tr>
+</tbody></table>
+<a id='sec-disk'></a><div class='sec-title'>Servers Disk Space</div>
+<div class='note'>Warning below 15 % free; Critical below 10 % free.</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>ServerName</th><th>Drive</th><th>VolName</th><th>Total (GB)</th><th>Used (GB)</th><th>Free (GB)</th><th>Free %</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>SRVSCCM</td><td>C:</td><td></td><td>299.48</td><td>184.18</td><td>115.3</td><td>38.5</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>2</td><td class='l'>SRVSCCM</td><td>D:</td><td>Configuration Manager</td><td>126.87</td><td>62.73</td><td>64.14</td><td>50.55</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>3</td><td class='l'>SRVSCCM</td><td>E:</td><td>DP_SCCM</td><td>126.87</td><td>99.07</td><td>27.8</td><td>21.91</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>4</td><td class='l'>SRVSCCM</td><td>F:</td><td>Temporary Storage</td><td>40</td><td>0.09</td><td>39.91</td><td>99.77</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>5</td><td class='l'>SRVSCCMDB</td><td>C:</td><td></td><td>126.48</td><td>26.6</td><td>99.88</td><td>78.97</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>6</td><td class='l'>SRVSCCMDB</td><td>D:</td><td>DIR_DB</td><td>126.87</td><td>27.78</td><td>99.09</td><td>78.1</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>7</td><td class='l'>SRVSCCMDB</td><td>E:</td><td>LOG_DB</td><td>126.87</td><td>30.3</td><td>96.57</td><td>76.11</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>8</td><td class='l'>SRVSCCMDB</td><td>F:</td><td>Temporary Storage</td><td>40</td><td>0.09</td><td>39.91</td><td>99.77</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>9</td><td class='l'>SRVWSUS</td><td>C:</td><td></td><td>39.66</td><td>34.43</td><td>5.23</td><td>13.2</td><td class='st warning'>Warning</td></tr>
+<tr class='alt'><td class='n'>10</td><td class='l'>SRVR0000000265</td><td>C:</td><td></td><td>39.66</td><td>23.2</td><td>16.46</td><td>41.51</td><td class='st ok'>Ok</td></tr>
+</tbody></table>
+<a id='sec-mp'></a><div class='sec-title'>Management Points</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>ServerName</th><th>Site Code</th><th>MPCert Status</th><th>MPCert Code</th><th>MPList Status</th><th>MPList Code</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>SRVSCCM</td><td>PAN</td><td>OK</td><td>200</td><td>OK</td><td>200</td><td class='st ok'>Ok</td></tr>
+</tbody></table>
+<a id='sec-services'></a><div class='sec-title'>ConfigMgr Services</div>
+<div class='note'>Critical: disabled, or Auto but not running. Warning: Manual start mode.</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>ServerName</th><th>Display Name</th><th>Name</th><th>StartMode</th><th>State</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>SRVSCCM</td><td class='l'>IIS Admin Service</td><td class='l'>IISADMIN</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>2</td><td class='l'>SRVSCCM</td><td class='l'>World Wide Web Publishing Service</td><td class='l'>W3SVC</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>3</td><td class='l'>SRVSCCM</td><td class='l'>Windows Management Instrumentation</td><td class='l'>Winmgmt</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>4</td><td class='l'>SRVSCCM</td><td class='l'>SMS Agent Host</td><td class='l'>CcmExec</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>5</td><td class='l'>SRVSCCM</td><td class='l'>SMS_EXECUTIVE</td><td class='l'>SMS_EXECUTIVE</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>6</td><td class='l'>SRVSCCM</td><td class='l'>SMS_SITE_COMPONENT_MANAGER</td><td class='l'>SMS_SITE_COMPONENT_MANAGER</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>7</td><td class='l'>SRVSCCM</td><td class='l'>SMS_SITE_VSS_WRITER</td><td class='l'>SMS_SITE_VSS_WRITER</td><td>Auto</td><td>Stopped</td><td class='st critical'>Critical</td></tr>
+<tr class='alt'><td class='n'>8</td><td class='l'>SRVR0000000265</td><td class='l'>IIS Admin Service</td><td class='l'>IISADMIN</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>9</td><td class='l'>SRVR0000000265</td><td class='l'>World Wide Web Publishing Service</td><td class='l'>W3SVC</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>10</td><td class='l'>SRVR0000000265</td><td class='l'>Windows Management Instrumentation</td><td class='l'>Winmgmt</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>11</td><td class='l'>SRVWSUS</td><td class='l'>IIS Admin Service</td><td class='l'>IISADMIN</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>12</td><td class='l'>SRVWSUS</td><td class='l'>World Wide Web Publishing Service</td><td class='l'>W3SVC</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>13</td><td class='l'>SRVWSUS</td><td class='l'>Windows Management Instrumentation</td><td class='l'>Winmgmt</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>14</td><td class='l'>SRVWSUS</td><td class='l'>SMS_EXECUTIVE</td><td class='l'>SMS_EXECUTIVE</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>15</td><td class='l'>SRVSCCMDB</td><td class='l'>Windows Management Instrumentation</td><td class='l'>Winmgmt</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>16</td><td class='l'>SRVSCCMDB</td><td class='l'>SMS_EXECUTIVE</td><td class='l'>SMS_EXECUTIVE</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+</tbody></table>
+<a id='sec-sqlservices'></a><div class='sec-title'>SQL Server Services</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>ServerName</th><th>Display Name</th><th>Name</th><th>StartMode</th><th>State</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>SRVSCCMDB</td><td class='l'>Windows Management Instrumentation</td><td class='l'>Winmgmt</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>2</td><td class='l'>SRVSCCMDB</td><td class='l'>SMS_EXECUTIVE</td><td class='l'>SMS_EXECUTIVE</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>3</td><td class='l'>SRVSCCMDB</td><td class='l'>SQL Server Reporting Services (MSSQLSERVER)</td><td class='l'>ReportServer</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>4</td><td class='l'>SRVSCCMDB</td><td class='l'>SQL Server (MSSQLSERVER)</td><td class='l'>MSSQLSERVER</td><td>Auto</td><td>Running</td><td class='st ok'>Ok</td></tr>
+</tbody></table>
+<a id='sec-backups'></a><div class='sec-title'>Backups</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>ServerName</th><th>Backup</th><th>Checked window</th><th>Last event</th><th>Result</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>SRVSCCM</td><td>Site backup</td><td>2026-11-23 21:00 to 2026-11-24 06:00</td><td>2026-11-24 03:12</td><td>Success</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>2</td><td class='l'>SRVSCCMDB</td><td>Database backup</td><td>2026-11-23 21:00 to 2026-11-24 06:00</td><td>2026-11-24 02:00</td><td>Success</td><td class='st ok'>Ok</td></tr>
+</tbody></table>
+<a id='sec-inboxes'></a><div class='sec-title'>Inboxes Backlog</div>
+<div class='note'>Files counted per folder (not recursive). Warning above 1000 files; Critical above 5000. 16 of 22 known folders do not exist on this site.</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>Folder</th><th>Path</th><th>Files</th><th>Size (MB)</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>ccr.box</td><td class='l'>D:\Program Files\Microsoft Configuration Manager\inboxes\ccr.box</td><td>0</td><td>0</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>2</td><td class='l'>auth\ddm.box</td><td class='l'>D:\Program Files\Microsoft Configuration Manager\inboxes\auth\ddm.box</td><td>3</td><td>0.01</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>3</td><td class='l'>auth\statesys.box\incoming</td><td class='l'>D:\Program Files\Microsoft Configuration Manager\inboxes\auth\statesys.box\incoming</td><td>212</td><td>1.4</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>4</td><td class='l'>schedule.box</td><td class='l'>D:\Program Files\Microsoft Configuration Manager\inboxes\schedule.box</td><td>0</td><td>0</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>5</td><td class='l'>statmgr.box\statmsgs</td><td class='l'>D:\Program Files\Microsoft Configuration Manager\inboxes\statmgr.box\statmsgs</td><td>1240</td><td>3.8</td><td class='st warning'>Warning</td></tr>
+<tr class='alt'><td class='n'>6</td><td class='l'>replmgr.box</td><td class='l'>D:\Program Files\Microsoft Configuration Manager\inboxes\replmgr.box</td><td>0</td><td>0</td><td class='st ok'>Ok</td></tr>
+</tbody></table>
+<a id='sec-sites'></a><div class='sec-title'>Site Status (issues only)</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>Site Code</th><th>ServerName</th><th>Site Name</th><th>TimeStamp</th><th>Site State</th><th>Status</th></tr></thead><tbody>
+<tr><td class='clear' colspan='7'>All sites are Active and OK.</td></tr>
+</tbody></table>
+<a id='sec-components'></a><div class='sec-title'>Component Status (Warning / Critical)</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>Site Code</th><th>ServerName</th><th>Component</th><th>Thread</th><th>Errors</th><th>Warns</th><th>Infos</th><th>Startup</th><th>State</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td>PAN</td><td class='l'>SRVSCCM</td><td class='l'>SMS_WSUS_SYNC_MANAGER</td><td>Started</td><td>4</td><td>0</td><td>12</td><td>Autostarting</td><td>Online</td><td class='st critical'>Critical</td></tr>
+<tr class='alt'><td class='n'>2</td><td>PAN</td><td class='l'>SRVSCCM</td><td class='l'>SMS_DISTRIBUTION_MANAGER</td><td>Started</td><td>0</td><td>14</td><td>230</td><td>Autostarting</td><td>Online</td><td class='st warning'>Warning</td></tr>
+</tbody></table>
+<a id='sec-clients'></a><div class='sec-title'>Client Health</div>
+<div class='note'>Warning below 95 %; Critical below 85 %. Source: site database summary views.</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>Metric</th><th>Clients</th><th>%</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>Clients in All Systems</td><td>8420</td><td></td><td class='st na'>Info</td></tr>
+<tr class='alt'><td class='n'>2</td><td class='l'>Active clients</td><td>7954</td><td>94.5 %</td><td class='st warning'>Warning</td></tr>
+<tr><td class='n'>3</td><td class='l'>Inactive clients</td><td>466</td><td>5.5 %</td><td class='st na'>Info</td></tr>
+<tr class='alt'><td class='n'>4</td><td class='l'>Healthy clients (client check / CCMEval)</td><td>8110</td><td>96.3 %</td><td class='st ok'>Ok</td></tr>
+<tr><td class='n'>5</td><td class='l'>Unhealthy clients</td><td>310</td><td>3.7 %</td><td class='st na'>Info</td></tr>
+<tr class='alt'><td class='n'>6</td><td class='l'>Hardware inventory in the last 7 days</td><td>8201</td><td>97.4 %</td><td class='st ok' title='of 8420 clients'>Ok</td></tr>
+<tr><td class='n'>7</td><td class='l'>Software inventory in the last 7 days</td><td>8012</td><td>95.2 %</td><td class='st ok' title='of 8420 clients'>Ok</td></tr>
+</tbody></table>
+<a id='sec-sup'></a><div class='sec-title'>Software Update Point Synchronization</div>
+<div class='note'>Warning when the last successful sync is older than 30 h; Critical older than 72 h or failed.</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>WSUS / SUP</th><th>Site</th><th>Last sync state</th><th>Last successful sync</th><th>Age (h)</th><th>Error code</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>SRVWSUS</td><td>PAN</td><td>Sync done</td><td>2026-11-24 02:00</td><td>8.9</td><td>0</td><td class='st ok'>Ok</td></tr>
+</tbody></table>
+<a id='sec-compliance'></a><div class='sec-title'>Patch Compliance (Software Update deployments)</div>
+<div class='note'>Compliance = Success / Targeted. Warning below 95 %; Critical below 85 %.</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>Deployment (Software Update Group)</th><th>Collection</th><th>Targeted</th><th>Success</th><th>In progress</th><th>Errors</th><th>Unknown</th><th>Compliance</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>SUG - Workstations - 2026-11</td><td class='l'>All Workstations</td><td>7800</td><td>7410</td><td>120</td><td>40</td><td>230</td><td>95 %</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>2</td><td class='l'>SUG - Servers - 2026-11</td><td class='l'>All Servers</td><td>64</td><td>52</td><td>2</td><td>1</td><td>9</td><td>81.3 %</td><td class='st critical'>Critical</td></tr>
+<tr><td class='n'>3</td><td class='l'>SUG - Workstations - 2026-10</td><td class='l'>All Workstations</td><td>7700</td><td>7219</td><td>0</td><td>60</td><td>421</td><td>93.8 %</td><td class='st warning'>Warning</td></tr>
+</tbody></table>
+<a id='sec-dpstorage'></a><div class='sec-title'>Distribution Point Storage</div>
+<div class='note'>Warning below 15 % free; Critical below 10 % free.</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>Distribution Point</th><th>Drive</th><th>Total (GB)</th><th>Free (GB)</th><th>Free %</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>SRVSCCM</td><td>E:</td><td>126.9</td><td>27.8</td><td>22</td><td class='st ok'>Ok</td></tr>
+<tr class='alt'><td class='n'>2</td><td class='l'>SRVR0000000265</td><td>D:</td><td>200.0</td><td>21.0</td><td>10.5</td><td class='st warning'>Warning</td></tr>
+</tbody></table>
+<a id='sec-contentdp'></a><div class='sec-title'>Content Distribution by Distribution Point</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>Distribution Point</th><th>Packages not complete</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>SRVR0000000265</td><td>2</td><td class='st warning'>Warning</td></tr>
+</tbody></table>
+<a id='sec-content'></a><div class='sec-title'>Content Distribution Detail (not complete)</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>Distribution Point</th><th>Site</th><th>PackageID</th><th>Package</th><th>Source Ver</th><th>Last refresh</th><th>Install status</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>SRVR0000000265</td><td>PAN</td><td>PAN00123</td><td class='l'>Office 365 Click-to-Run</td><td>7</td><td>2026-11-23 18:40</td><td>Package Installation in progress</td><td class='st warning'>Warning</td></tr>
+<tr class='alt'><td class='n'>2</td><td class='l'>SRVR0000000265</td><td>PAN</td><td>PAN0019A</td><td class='l'>Browser update 2026-11</td><td>2</td><td>2026-11-24 07:05</td><td>Package Installation pending</td><td class='st warning'>Warning</td></tr>
+</tbody></table>
+<a id='sec-certs'></a><div class='sec-title'>Certificate Expiration (LocalMachine\My, with private key)</div>
+<div class='note'>Warning within 60 days; Critical within 30 days or recently expired (last 30 days). Older expired leftovers are ignored.</div>
+<table class='grid'><thead><tr><th class='n'>#</th><th>ServerName</th><th>Subject</th><th>Expires</th><th>Days left</th><th>Status</th></tr></thead><tbody>
+<tr><td class='n'>1</td><td class='l'>SRVWSUS</td><td class='l'>CN=srvwsus.bauducco.com.br</td><td>2026-12-06 12:00</td><td>12</td><td class='st critical' title='Thumbprint: 0F3A...'>Critical</td></tr>
+<tr class='alt'><td class='n'>2</td><td class='l'>SRVSCCM</td><td class='l'>CN=srvsccm.bauducco.com.br</td><td>2027-01-04 09:30</td><td>41</td><td class='st warning' title='Thumbprint: 9C21...'>Warning</td></tr>
+</tbody></table>
+
+<div class="note" style="margin-top:18px"><span class="legend"><span class="ok">Ok</span><span class="warning">Warning</span><span class="critical">Critical</span><span class="na">Info / NA</span></span></div>
+</div>
+<div class="foot">Bauducco - internal use only - read-only report generated 2026-11-24 10:52 on SRVSCCM - script v02.00</div>
+</div>
+</body>
+</html>
