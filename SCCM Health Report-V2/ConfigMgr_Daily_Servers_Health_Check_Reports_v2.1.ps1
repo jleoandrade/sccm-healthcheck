@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    ConfigMgr daily servers health check report (v2). Read-only: it collects data and builds an HTML (+CSV) report.
+    ConfigMgr daily servers health check report (v2.1). Read-only: it collects data and builds an HTML (+CSV) report.
 
 .DESCRIPTION
     - Uses the same ConfigFile.xml as v1. Every new key is optional and has a default.
@@ -25,7 +25,12 @@
     .\ConfigMgr_Daily_Servers_Health_Check_Reports_v2.ps1 -NonInteractive
 
 .NOTES
-    Version : 02.00
+    Version : 2.1
+    Changelog:
+      2.1 - SUP sync: resolves the view name (vSMS_SUPSyncStatus / v_SUPSyncStatus) and lists similar names if none exists.
+            Patch compliance: no NumberTargeted column; total = sum of the state counts.
+            Inboxes: real WinRM error shown in the report, UNC share used as fallback.
+      2.0 - First release of the rewrite (collection separated from rendering, prompts, new checks, Accenture palette).
     Based on: ConfigMgr_Daily_Servers_Health_Check_Reports v01.00 (Karthikeyan Anbarasu, 28/01/2018)
     Target  : Windows PowerShell 4.0+ (Windows Server 2012 R2 or later)
 #>
@@ -37,7 +42,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$ScriptVersion = '02.00'
+$ScriptVersion = '2.1'
 if (-not $ConfigPath) { $ConfigPath = Join-Path $OutputPath 'ConfigFile.xml' }
 $Interactive = (-not $NonInteractive) -and [Environment]::UserInteractive
 
