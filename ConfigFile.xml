@@ -1,0 +1,51 @@
+<Settings>
+	<CentralSettings>
+		<SCCMCentralDBName>CM_PAN</SCCMCentralDBName>
+		<SCCMCentralDBServerName>SRVSCCMDB</SCCMCentralDBServerName>
+	</CentralSettings>
+
+	<SCCMSettings>
+		<ProjectName> SCCM Health Check</ProjectName>	
+		<OutputFileName>ConfigMgr_Daily_Servers_Health_Check_Reports</OutputFileName>
+		<strServers>SRVSCCM,SRVSCCMDB,SRVWSUS,SRVR0000000265</strServers>
+		<strMPServers>SRVSCCM</strMPServers>
+		<strServicesServers>SRVSCCM,SRVR0000000265,SRVWSUS,SRVSCCMDB</strServicesServers>
+		<SiteCode>PAN</SiteCode>
+		<SMSProviderServerName>SRVSCCM</SMSProviderServerName>
+		<SMSDBServerName>SRVSCCMDB</SMSDBServerName>		
+	</SCCMSettings>
+
+	
+
+	<HealthCheckCustomSettings>
+		<CheckServersAvailabilityRpt>Yes</CheckServersAvailabilityRpt>
+		<CheckServersDiskSpaceRpt>Yes</CheckServersDiskSpaceRpt>
+		<CheckServersMPRpt>Yes</CheckServersMPRpt>
+		<CheckSiteServersServicesRpt>Yes</CheckSiteServersServicesRpt>
+		<CheckSQLServerServicesRpt>Yes</CheckSQLServerServicesRpt>
+		<CheckBackupsRpt>Yes</CheckBackupsRpt>
+		<CheckInboxRpt>Yes</CheckInboxRpt>
+		<CheckIssueSiteServersRpt>Yes</CheckIssueSiteServersRpt>
+		<CheckCompRpt>Yes</CheckCompRpt>
+		<CheckWaitingContentRpt>Yes</CheckWaitingContentRpt>
+		<GenerateCSVRpt>Yes</GenerateCSVRpt>	    
+	</HealthCheckCustomSettings>
+
+	<DefaultSettings>
+		<InboxWarningCount>1000</InboxWarningCount>
+		<InboxCriticalCount>5000</InboxCriticalCount>
+		<WarningDiskSpacePercentage>15</WarningDiskSpacePercentage>
+		<CriticalDiskSpacePercentage>10</CriticalDiskSpacePercentage>
+		<CheckSiteBackup>Yes</CheckSiteBackup>
+		<CheckDBBackup>Yes</CheckDBBackup>	
+		<HistoryRpt>-30</HistoryRpt>
+	</DefaultSettings>
+
+	<HTMLSettings>
+		<HeaderBGColor>#425563</HeaderBGColor>
+		<FooterBGColor>#425563</FooterBGColor>
+		<TableHeaderBGColor>#01A982</TableHeaderBGColor>
+		<TableHeaderRowBGColor>#CCCCCC</TableHeaderRowBGColor>
+		<TextColor>white</TextColor>
+	</HTMLSettings>		
+</Settings>
